@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Seguimiento a la Contratación 2026</title>
+    <!-- Favicon / Ícono de la pestaña -->
+    <link rel="icon" type="image/png" href="https://www.piedras-tolima.gov.co/sites/piedrastolima/content/files/000537/26825_escudo-piedras-pagina-web01_200x200.png">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #f8fafc;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #1e293b;
+        }
+        iframe {
+            border: none;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        /* Pantalla inicial contenedora */
+        #fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            z-index: 9999;
+            overflow-y: auto;
+            padding: 24px 16px;
+        }
+        .guide-card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 620px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e2e8f0;
+            padding: 28px 24px;
+            margin: auto 0;
+            text-align: left;
+        }
+        .header-section {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .header-section img {
+            width: 75px;
+            height: 75px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            object-fit: contain;
+        }
+        .header-section h1 {
+            color: #1e1e78;
+            font-size: 22px;
+            font-weight: 800;
+            margin: 0 0 6px 0;
+        }
+        /* Botón de ingreso ubicado debajo del título principal */
+        .btn-container {
+            text-align: center;
+            margin: 16px 0 20px 0;
+        }
+        .btn-ingresar {
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #3b3bbb;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(59, 59, 187, 0.35);
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+        .btn-ingresar:hover {
+            background-color: #2e2e9c;
+        }
+        .btn-ingresar:active {
+            transform: scale(0.98);
+        }
+        .device-info {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+        .header-section .subtitle {
+            font-size: 14px;
+            color: #4338ca;
+            font-weight: 600;
+            margin: 0 0 10px 0;
+        }
+        .header-section .lead {
+            font-size: 13.5px;
+            color: #475569;
+            line-height: 1.5;
+            margin: 0;
+        }
+        /* Pasos del instructivo */
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .step-row {
+            display: flex;
+            align-items: flex-start;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 12px 14px;
+            border: 1px solid #edf2f7;
+        }
+        .step-number {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1e1e78;
+            min-width: 32px;
+            line-height: 1.2;
+        }
+        .step-content strong {
+            display: block;
+            font-size: 14px;
+            color: #0f172a;
+            margin-bottom: 2px;
+        }
+        .step-content p {
+            margin: 0;
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.4;
+            word-break: break-all;
+        }
+        .step-content a {
+            color: #3b3bbb;
+            text-decoration: underline;
+        }
+        /* Caja de QR dinámico */
+        .qr-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 14px;
+            background-color: #ffffff;
+        }
+        .qr-section img {
+            width: 88px;
+            height: 88px;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+        .qr-text strong {
+            display: block;
+            font-size: 14px;
+            color: #1e1e78;
+            margin-bottom: 4px;
+        }
+        .qr-text p {
+            margin: 0;
+            font-size: 12.5px;
+            color: #64748b;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <!-- Capa de Inicio con Instructivo Integrado -->
+    <div id="fullscreen-overlay">
+        <div class="guide-card">
+            <div class="header-section">
+                <img src="https://www.piedras-tolima.gov.co/sites/piedrastolima/content/files/000537/26825_escudo-piedras-pagina-web01_200x200.png" alt="Escudo de Piedras">
+                <h1>Seguimiento a la Contratación 2026</h1>
+
+                <!-- Botón de acceso al módulo -->
+                <div class="btn-container">
+                    <button class="btn-ingresar" onclick="activarPantallaCompleta()">Ingresar al Sistema</button>
+                    <div id="pantalla-info" class="device-info"></div>
+                </div>
+
+                <div class="subtitle">(M1) Secretaríos → (M2) Banco de Proyectos → (M3) Asesor Financiero</div>
+                <p class="lead">Módulo de consulta y registro para el flujo de contratación institucional según los plazos de Configuración_Tiempos.</p>
+            </div>
+
+            <div class="steps-container">
+                <div class="step-row">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <strong>Ingresa al módulo</strong>
+                        <p>Accede desde tu equipo de escritorio o dispositivo móvil, o escanea el código QR: <br>
+                            <a id="current-url-link" href="#" target="_blank"></a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="step-row">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <strong>Selecciona una vista</strong>
+                        <p>Elige entre <em>"Listado por dependencia"</em> (para trabajar sobre campos específicos) o <em>"Visualizar todos"</em> (modo solo lectura para consulta general).</p>
+                    </div>
+                </div>
+
+                <div class="step-row">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <strong>Escoge la dependencia o perfil</strong>
+                        <p>Selecciona tu área correspondiente: <em>M1 Secretarías y Directores</em>, <em>M2 Asesor Banco de Proyectos</em>, <em>M3 Asesor Financiero</em> o <em>Usuarios Externos</em>.</p>
+                    </div>
+                </div>
+
+                <div class="step-row">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <strong>Inicia sesión</strong>
+                        <p>Ingresa tu <em>Login</em> (seleccionando o digitando tu usuario) y tu <em>Password / Clave de acceso</em> para cargar la información.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenedor QR dinámico según la ubicación del archivo -->
+            <div class="qr-section">
+                <img id="qr-code-img" src="" alt="Código QR de acceso">
+                <div class="qr-text">
+                    <strong>Acceso directo desde celular</strong>
+                    <p>Escanea el código para ingresar inmediatamente al panel de control de contratación.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Iframe con src asignado dinámicamente mediante script -->
+    <iframe 
+        id="app-frame" 
+        src="" 
+        allowfullscreen>
+    </iframe>
+
+    <script>
+        const baseUrlAppsScript = "https://script.google.com/macros/s/AKfycbytmFJ618SAn60VgzTdK6OWMMv9qoJGkYIxv2CrwhCFxxThJ7bQO-9Ct2aMpJGVkPdUOg/exec";
+        
+        // Obtiene todos los parámetros GET pasados en la URL actual (ej: ?ADMIN=123)
+        const queryParams = window.location.search;
+
+        // Asigna la URL completa al iframe
+        const appFrame = document.getElementById('app-frame');
+        appFrame.src = baseUrlAppsScript + queryParams;
+
+        // Actualiza el link en pantalla y el código QR manteniendo los parámetros recibidos
+        const currentUrl = window.location.href;
+        const urlLink = document.getElementById('current-url-link');
+        urlLink.href = currentUrl;
+        urlLink.textContent = currentUrl;
+
+        const qrImage = document.getElementById('qr-code-img');
+        qrImage.src = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' + encodeURIComponent(currentUrl);
+
+        function esDispositivoMovil() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            const esTouchOUserAgent = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
+            const esPantallaPequena = window.matchMedia("(max-width: 768px)").matches;
+            return esTouchOUserAgent || esPantallaPequena;
+        }
+
+        const info = document.getElementById('pantalla-info');
+        if (esDispositivoMovil()) {
+            info.textContent = "El sistema se abrirá en modo pantalla completa.";
+        }
+
+        function activarPantallaCompleta() {
+            if (esDispositivoMovil()) {
+                const elem = document.documentElement;
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.webkitRequestFullscreen) {
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen();
+                }
+            }
+            document.getElementById('fullscreen-overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
